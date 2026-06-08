@@ -1,24 +1,18 @@
-public class Solution {
-    public bool ContainsDuplicate(int[] nums) {
+public class Solution 
+{
+    public bool hasDuplicate(int[] nums) 
+    {
         var dict = new Dictionary<int, int>();
 
-        for (int i = 0; i < nums.Length; i++)
+        foreach (var i in nums)
         {
-            if (dict.Keys.Contains(nums[i]))
+            if (dict.Keys.Contains(i))
             {
-                dict[nums[i]] += 1;
+                return true;
             }
             else
             {
-                dict[nums[i]] = 1;
-            }
-        }
-
-        foreach (var (key, value) in dict)
-        {
-            if (value > 1)
-            {
-                return true;
+                dict[i] = 1;
             }
         }
 
