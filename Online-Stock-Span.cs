@@ -1,23 +1,20 @@
-public class StockSpanner {
+public class StockSpanner 
+{
+    Stack<int[]> stack;
 
-    Stack<int> stack;
-    Dictionary<int, int> dict;
-
-    public StockSpanner() {
-        stack = new Stack<int>();
-        dict = new Dictionary<int, int>();
+    public StockSpanner() 
+    {
+        stack = new Stack<int[]>();
     }
     
     public int Next(int price) {
         int count = 1;
-        while (stack.Count > 0 && price >= stack.Peek())
+        while (stack.Count > 0 && price >= stack.Peek()[0])
         {
-            var poppedVal = stack.Pop();
-            count += dict[poppedVal];
+            count += stack.Pop()[1];
         }
 
-        stack.Push(price);
-        dict[price] = count;
+        stack.Push([price, count]);
 
         return count;
     }
